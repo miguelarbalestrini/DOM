@@ -1,14 +1,15 @@
 const seccionProductos = document.getElementById('productos');
 const compras = document.getElementById('compras');
+const iconoCarrito = document.getElementById('cart');
 const cantidadDeProductos = 5;
 
 const entregarPedido = (mensaje, precio) => {
     console.log(mensaje)
-    mensajeCarrito = document.createElement('div');
-    mensaje.innerHTML = mensaje;
-    carrito = document.createElement('div');
+    let mensajeCarrito = document.createElement('p');
+    mensajeCarrito.innerHTML = mensaje;
+    let carrito = document.createElement('p');
     carrito.innerHTML = `El total es de ${precio}`;
-    compras.append(mensaje);
+    compras.append(mensajeCarrito);
     compras.append(carrito);
 }
 
@@ -48,6 +49,11 @@ function evaluarPedido(comida, cantidad) {
     entregarPedido(mensaje, precio);
 }
 
+const mostrarCantidad = (cantidad) => {
+    let numeroItems = document.createElement('div');
+    numeroItems.innerHTML = cantidad;
+    iconoCarrito.append(numeroItems);
+}
 
 const tomarPedido = () => {
     const comida = Number(prompt(`Bienvenido a Coder FastFood!
@@ -61,6 +67,7 @@ const tomarPedido = () => {
     `));
     const cantidad = Number(prompt(`Ingresar cantidad de unidades`));
 
+    mostrarCantidad(cantidad);
     evaluarPedido(comida, cantidad);
 }
 
