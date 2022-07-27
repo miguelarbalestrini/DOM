@@ -1,108 +1,90 @@
-// Comenzo ejecución
-// solicitarDatos();
+const seccionProductos = document.getElementById('productos');
+const compras = document.getElementById('compras');
+const cantidadDeProductos = 5;
 
-// Declaración de operaciones
-
-function sumar(a, b) {
-    return a + b;
-}
-
-function restar(a, b) {
-    return a - b;
-}
-
-function multiplicar(a, b) {
-    return a * b;
-}
-
-function dividir(a, b) {
-    return a / b;
+const entregarPedido = (mensaje, precio) => {
+    console.log(mensaje)
+    mensajeCarrito = document.createElement('div');
+    mensaje.innerHTML = mensaje;
+    carrito = document.createElement('div');
+    carrito.innerHTML = `El total es de ${precio}`;
+    compras.append(mensaje);
+    compras.append(carrito);
 }
 
 
-const cobrar = (importe) => {
-    let pago = 0;
-    while (importe > 0 && pago != importe) {
-        pago = Number(prompt(`Ingrese ${importe}`));
-    }
-    alert(`Muchas gracias por su compra!`);
-}
-
-const entregarPedido = (mssg, p) => {
-    alert(`Muchas gracias por elegirnos,
-    ${mssg} el total es  ${p}`);
-    cobrar(p);
-}
-
-
-function evaluarPedido(food, cantidad) {
-    let message = '';
+function evaluarPedido(comida, cantidad) {
+    let mensaje = '';
     precio = 0;
-    switch (food) {
+    switch (comida) {
         case 1:
             precio = 40;
-            precio = multiplicar(precio, cantidad);
-            message = 'Aquí está su Lomito';
+            precio = precio * cantidad;
+            mensaje = 'Aquí está su Pizza0';
             break;
         case 2:
             precio = 30;
-            precio = multiplicar(precio, cantidad);
-            message = 'Aquí está su Hamburguesa';
+            precio = precio * cantidad;
+            mensaje = 'Aquí está su Pizza1';
             break;
         case 3:
             precio = 35;
-            precio = multiplicar(precio, cantidad);
-            message = 'Aquí está su Pizza';
+            precio = precio * cantidad;
+            mensaje = 'Aquí está su Pizza2';
             break;
         case 4:
-            precio = 20;
-            precio = multiplicar(precio, cantidad);
-            message = 'Aquí está su Choripan';
+            precio = 10;
+            precio = precio * cantidad;
+            mensaje = 'Aquí está su empanada0';
+            break;
+        case 5:
+            precio = 10;
+            precio = precio * cantidad;
+            mensaje = 'Aquí está su empanada1';
             break;
         default:
-            message = 'Lo sentimos, no está en nuestro menú';
+            mensaje = 'Lo sentimos, no está en nuestro menú';
     }
-    entregarPedido(message, precio);
+    entregarPedido(mensaje, precio);
 }
 
 
 const tomarPedido = () => {
     const comida = Number(prompt(`Bienvenido a Coder FastFood!
-    Qué desea llevar? 
-    
-    1 - Lomito, 40
-    2 - Hamburguesa, 30
-    3 - Pizza, 35
-    4 - Choripan, 20`));
+        Qué desea llevar? 
+        
+        1 - Pizza 0, 40
+        2 - Pizza 1, 30
+        3 - Pizza 2, 35
+        4 - Empanada 3, 10
+        5 - Empanada 4, 10    
+    `));
     const cantidad = Number(prompt(`Ingresar cantidad de unidades`));
 
     evaluarPedido(comida, cantidad);
 }
 
-const seccionProductos = document.getElementById('productos');
-console.log(seccionProductos)
-seccionProductos.innerHTM
-const cantidadDeProductos = 5;
-
-const verProductos = () => {
+const mostrarProductos = () => {
     let contador = 0;
-    
-    while (contador < cantidadDeProductos) {
-        console.log(contador);
+
+    while (contador < cantidadDeProductos) {1
+        
         seccionProductos.innerHTML += (`
         <div class="card" style="width: 18rem;">
             <img src="./img/producto${contador}.jpg" class="card-img-top" alt="test">
             <div class="card-body">
                 <h5 class="card-title">Producto ${contador}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">
+                    Some quick example text to build on the card title 
+                    and make up the bulk of the card's content.
+                </p>
                 <a href="#" class="btn btn-primary">Buy</a>
             </div>
         </div>
         `);
-        console.log(seccionProductos)
         contador++;
     }
 }
 
-verProductos();
-// tomarPedido();
+mostrarProductos();
+tomarPedido();
